@@ -105,7 +105,21 @@ Proxy:
 #   rc4-md5 chacha20 chacha20-ietf xchacha20
 #   chacha20-ietf-poly1305 xchacha20-ietf-poly1305
 
-- { name: "ss1", type: ss, server: server, port: 443, cipher: chacha20-ietf-poly1305, password: "password", udp: true }
+- { name: "🇨🇳 中-港Ali1", type: ss, server:  hk.ali5.b66g3f.ccddns.online, port: 14498, cipher: chacha20-ietf, password: "linkang", udp: true }
+- { name: "🇨🇳 中-港Ali2", type: ss, server:  23.99.111.42, port: 14498, cipher: chacha20-ietf, password: "linkang", udp: true }
+- { name: "🇭🇰 香港HKT", type: ss, server: cchkt7.ccddns.online, port: 14498, cipher: chacha20-ietf, password: "linkang", udp: true }
+- { name: "🇭🇰 香港HKBN", type: ss, server: cchkbn.ccddns.online, port: 14498, cipher: chacha20-ietf, password: "linkang", udp: true }
+- { name: "🇼🇸 台湾Hinetj", type: ss, server: tw.hinet8.ccddns.online, port: 14498, cipher: chacha20-ietf, password: "linkang", udp: true }
+- { name: "🇼🇸 台湾Hinets", type: ss, server: tw.hinet12.ccddns.online, port: 14498, cipher: chacha20-ietf, password: "linkang", udp: true }
+- { name: "🇸🇬 新加坡Ali", type: ss, server: kr.aws.ccddns.online, port: 14498, cipher: chacha20-ietf, password: "linkang", udp: true }
+- { name: "🇸🇬 新加坡Aws", type: ss, server: sgp.aws.ccddns.online, port: 14498, cipher: chacha20-ietf, password: "linkang", udp: true }
+- { name: "🇯🇵 日本Webarena", type: ss, server: 203.137.193.163, port: 14498, cipher: chacha20-ietf, password: "linkang", udp: true }
+- { name: "🇯🇵 日本Ali", type: ss, server: jp.gmo5.ccddns.online, port: 14498, cipher: chacha20-ietf, password: "linkang", udp: true }
+- { name: "🇺🇸 美国GIA", type: ss, server: 154.95.1.2, port: 14498, cipher: chacha20-ietf, password: "linkang", udp: true }
+- { name: "🇺🇸 美国RS", type: ss, server: 38.147.167.179, port: 14498, cipher: chacha20-ietf, password: "linkang", udp: true }
+- { name: "🇺🇸 美国Mc", type: ss, server: 96.44.141.53, port: 14498, cipher: chacha20-ietf, password: "linkang", udp: true }
+- { name: "🇺🇸 美国Ds", type: ss, server: 98.126.31.203, port: 14498, cipher: chacha20-ietf, password: "linkang", udp: true }
+- { name: "🏁 Google", type: ss, server: 35.201.245.5, port: 10088, cipher: chacha20-ietf, password: "linkang", udp: true }
 
 - name: "ss2"
   type: ss
@@ -136,7 +150,7 @@ Proxy:
 
 # vmess
 # 支持加密方式：auto / aes-128-gcm / chacha20-poly1305 / none
-- { name: "vmess", type: vmess, server: server, port: 443, uuid: uuid, alterId: 32, cipher: auto }
+- { name: "🇦🇸 Google", type: vmess, server: 35.201.245.5, port: 10086, uuid: uuid, alterId: 233, cipher: auto }
 #   tls
 - { name: "vmess", type: vmess, server: server, port: 443, uuid: uuid, alterId: 32, cipher: auto, tls: true }
 #   tls (skip-cert-verify)
@@ -167,17 +181,17 @@ Proxy:
 
 Proxy Group:
 # url-test 可以自动选择与指定 URL 测速后，延迟最短的服务器
-- { name: "auto", type: url-test, proxies: ["ss1", "ss2", "vmess1"], url: "https://www.bing.com", interval: 300 }
+- { name: "Auto", type: url-test, proxies: ["🇨🇳 中-港Ali1", "🇨🇳 中-港Ali2", "🇭🇰 香港HKT", "🇭🇰 香港HKBN", "🇼🇸 台湾Hinetj", "🇼🇸 台湾Hinets", "🇸🇬 新加坡Ali", "🇸🇬 新加坡Aws", "🇯🇵 日本Webarena", "🇯🇵 日本Ali", "🇺🇸 美国GIA", "🇺🇸 美国RS", "🏁 Google", "🇦🇸 Google"],  url: "https://www.bing.com", interval: 300 }
 
 # fallback 可以尽量按照用户书写的服务器顺序，在确保服务器可用的情况下，自动选择服务器
-- { name: "fallback-auto", type: fallback, proxies: ["ss1", "ss2", "vmess1"], url: "https://www.bing.com", interval: 300 }
+- { name: "FallBack", type: fallback, proxies: ["🇺🇸 美国GIA", "🇺🇸 美国RS", "🇺🇸 美国Mc", "🇺🇸 美国Ds"],  url: "https://www.bing.com", interval: 300 }
 
 # load-balance 可以使相同 eTLD 请求在同一条代理线路上
-- { name: "load-balance", type: load-balance, proxies: ["ss1", "ss2", "vmess1"] }
+- { name: "load-balance", type: load-balance, proxies: ["🇺🇸 美国GIA", "🇺🇸 美国RS", "🇺🇸 美国Mc"],  url: "https://www.bing.com", interval: 300 }
 
 # select 用来允许用户手动选择 代理服务器 或 服务器组
 # 您也可以使用 RESTful API 去切换服务器，这种方式推荐在 GUI 中使用
-- { name: "Proxy", type: select, proxies: ["ss1", "ss2", "vmess1", "auto"] }
+- { name: "Proxy", type: select, proxies: ["🇨🇳 中-港Ali1", "🇭🇰 香港HKBN", "🇺🇸 美国Mc", "🇦🇸 Google", "Auto"] }
 
 Rule:
 # Apple
